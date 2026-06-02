@@ -1,0 +1,686 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dhyey Pandya — Sports Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --black: #0a0a0a;
+    --white: #f5f2ed;
+    --accent: #e8441a;
+    --accent2: #f0a500;
+    --gray: #888;
+    --light: #1a1a1a;
+    --card: #111;
+    --border: rgba(255,255,255,0.08);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 3rem;
+    background: rgba(10,10,10,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 0.1em;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #1a0800 50%, #0a0a0a 100%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(232,68,26,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(232,68,26,0.06) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 900px; }
+  .hero-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .hero-tag::before {
+    content: '';
+    display: inline-block;
+    width: 32px; height: 1px;
+    background: var(--accent);
+  }
+  .hero-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 9rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    color: var(--white);
+    margin-bottom: 1rem;
+  }
+  .hero-name span { color: var(--accent); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--gray);
+    font-weight: 300;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    line-height: 1.7;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.8rem 1.8rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-decoration: none;
+    border-radius: 2px;
+    transition: all 0.2s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--white);
+  }
+  .btn-primary:hover { background: #c93a15; }
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .btn-outline:hover { border-color: var(--white); }
+
+  .hero-stats {
+    position: absolute; right: 3rem; bottom: 5rem;
+    display: flex; flex-direction: column; gap: 2rem;
+    z-index: 2;
+  }
+  .stat { text-align: right; }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--gray);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  /* SECTIONS */
+  section { padding: 6rem 3rem; }
+  .section-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .section-tag::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--accent);
+  }
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    letter-spacing: 0.03em;
+    margin-bottom: 3rem;
+    line-height: 1;
+  }
+
+  /* ABOUT */
+  .about { background: var(--light); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p {
+    color: rgba(245,242,237,0.7);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  .about-text p strong { color: var(--white); font-weight: 500; }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+  }
+  .skill-tag {
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    font-size: 0.78rem;
+    color: var(--gray);
+    letter-spacing: 0.05em;
+    font-family: 'DM Mono', monospace;
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { border-color: var(--accent); color: var(--white); }
+
+  /* EXPERIENCE TIMELINE */
+  .timeline { max-width: 860px; }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    gap: 2rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: 153px;
+    top: 2.6rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+  }
+  .timeline-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--gray);
+    padding-top: 0.2rem;
+    text-align: right;
+    padding-right: 1.5rem;
+  }
+  .timeline-role {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.2rem;
+  }
+  .timeline-org {
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin-bottom: 0.75rem;
+    font-weight: 400;
+  }
+  .timeline-desc {
+    font-size: 0.88rem;
+    color: rgba(245,242,237,0.6);
+    line-height: 1.75;
+  }
+  .timeline-tags {
+    display: flex;
+    gap: 0.4rem;
+    flex-wrap: wrap;
+    margin-top: 0.75rem;
+  }
+  .ttag {
+    padding: 0.2rem 0.6rem;
+    background: rgba(232,68,26,0.1);
+    border: 1px solid rgba(232,68,26,0.2);
+    border-radius: 2px;
+    font-size: 0.68rem;
+    color: var(--accent);
+    font-family: 'DM Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* PORTFOLIO */
+  .portfolio { background: var(--light); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    cursor: pointer;
+  }
+  .project-card:hover {
+    border-color: rgba(232,68,26,0.4);
+    transform: translateY(-2px);
+  }
+  .project-card.featured {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .project-visual {
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    letter-spacing: 0.05em;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-visual.hyatt { background: linear-gradient(135deg, #2d0070, #5c00d4); color: rgba(255,255,255,0.15); font-size: 6rem; }
+  .project-visual.octagon { background: linear-gradient(135deg, #001a2e, #003d6b); color: rgba(255,255,255,0.1); font-size: 5rem; }
+  .project-visual.ncaa { background: linear-gradient(135deg, #1a0500, #4a1200); color: rgba(255,255,255,0.1); }
+  .project-visual.ttu { background: linear-gradient(135deg, #2a0000, #6b0000); color: rgba(255,255,255,0.1); }
+  .project-visual span {
+    position: absolute;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 8rem;
+    opacity: 0.12;
+    user-select: none;
+  }
+  .project-label {
+    position: absolute;
+    bottom: 1rem; left: 1rem;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: rgba(255,255,255,0.5);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+  }
+  .project-body { padding: 1.5rem; }
+  .project-card.featured .project-visual { height: auto; }
+  .project-card.featured .project-body { padding: 2rem; display: flex; flex-direction: column; justify-content: center; }
+  .project-type {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    margin-bottom: 0.5rem;
+  }
+  .project-title {
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: var(--white);
+  }
+  .project-desc {
+    font-size: 0.83rem;
+    color: rgba(245,242,237,0.55);
+    line-height: 1.7;
+    margin-bottom: 1rem;
+  }
+  .project-meta {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--gray);
+  }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-text {
+    font-size: 1rem;
+    color: rgba(245,242,237,0.65);
+    line-height: 1.8;
+    margin-bottom: 2rem;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    padding: 1rem 1.2rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); color: var(--accent); }
+  .contact-link-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--gray);
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.1rem;
+  }
+  .big-cta {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+  }
+  .big-cta-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    line-height: 1;
+  }
+  .big-cta-title span { color: var(--accent); }
+  .big-cta p {
+    font-size: 0.9rem;
+    color: rgba(245,242,237,0.6);
+    margin-bottom: 1.5rem;
+    line-height: 1.7;
+  }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem 3rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.75rem;
+    color: var(--gray);
+    font-family: 'DM Mono', monospace;
+  }
+
+  /* SCROLLBAR */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--black); }
+  ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero { padding: 0 1.5rem 4rem; }
+    .hero-stats { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-template-columns: 1fr; }
+    .timeline-item { grid-template-columns: 1fr; gap: 0.5rem; }
+    .timeline-item::before { display: none; }
+    .timeline-date { text-align: left; padding-right: 0; }
+    footer { flex-direction: column; gap: 0.5rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="#" class="nav-logo">DP</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content">
+    <div class="hero-tag">Sports Marketing &amp; Brand Partnerships</div>
+    <h1 class="hero-name">DHYEY<br><span>PANDYA</span></h1>
+    <p class="hero-sub">MS Sport Management (4.0 GPA) &middot; Octagon alum &middot; Activation experience at the NCAA Final Four &middot; Building the next chapter in sports marketing.</p>
+    <div class="hero-ctas">
+      <a href="mailto:dhyey288pandya@gmail.com" class="btn btn-primary">Get in Touch &rarr;</a>
+      <a href="#work" class="btn btn-outline">View Work</a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="stat">
+      <div class="stat-num">4.0</div>
+      <div class="stat-label">GPA</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">20K+</div>
+      <div class="stat-label">Event Attendees</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">3</div>
+      <div class="stat-label">Fortune 500 Brands</div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="section-tag">About</div>
+  <h2 class="section-title">THE PERSON<br>BEHIND THE WORK</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a sports marketing professional who recently completed my <strong>Master of Science in Sport Management at Texas Tech University</strong> with a 4.0 GPA. I grew up in India, where the NBA was the league that connected us to American culture long before I ever arrived on this side of the world.</p>
+      <p>My career has been built at the intersection of <strong>brand strategy, live activation, and partnership execution</strong> — from agency work at Octagon to supporting Fortune 500 sponsors at the NCAA Men's Final Four, to daily activation management inside a Division I athletics department.</p>
+      <p>I am also an <strong>avid runner training toward my first marathon</strong>, a national-level competitive shooter with 12 medals, and someone who believes the best marketing does not feel like marketing at all. It feels like belonging.</p>
+    </div>
+    <div>
+      <div style="margin-bottom: 1.5rem;">
+        <p style="font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; font-family: 'DM Mono', monospace; margin-bottom: 0.75rem;">Core Competencies</p>
+        <div class="skills-grid">
+          <div class="skill-tag">Brand Partnerships</div>
+          <div class="skill-tag">Sponsorship Activation</div>
+          <div class="skill-tag">Campaign Strategy</div>
+          <div class="skill-tag">Client Servicing</div>
+          <div class="skill-tag">Event Operations</div>
+          <div class="skill-tag">Creator Marketing</div>
+          <div class="skill-tag">Data Reporting</div>
+          <div class="skill-tag">Cross-Functional PM</div>
+          <div class="skill-tag">MS Office Suite</div>
+          <div class="skill-tag">Google Workspace</div>
+          <div class="skill-tag">Canva</div>
+          <div class="skill-tag">Google Analytics</div>
+        </div>
+      </div>
+      <div>
+        <p style="font-size: 0.75rem; color: var(--gray); text-transform: uppercase; letter-spacing: 0.1em; font-family: 'DM Mono', monospace; margin-bottom: 0.75rem;">Languages</p>
+        <div class="skills-grid">
+          <div class="skill-tag">English — Fluent</div>
+          <div class="skill-tag">Spanish — Intermediate</div>
+          <div class="skill-tag">Hindi — Native</div>
+          <div class="skill-tag">Gujarati — Native</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="section-tag">Experience</div>
+  <h2 class="section-title">WHERE I'VE<br>BUILT MY CRAFT</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-date">Jun&nbsp;&ndash;&nbsp;Jul&nbsp;2025</div>
+      <div>
+        <div class="timeline-role">Capstone Marketing &amp; Strategy Intern</div>
+        <div class="timeline-org">Octagon &mdash; New York, NY</div>
+        <div class="timeline-desc">Selected for competitive internship inside the global sports marketing agency. Led audience and cultural research across 3+ consumer segments. Coordinated 4 internal teams across strategy, creative, partnerships and sponsorship to deliver a multi-phase national brand brief. Co-presented strategic recommendations and activation concepts directly to senior leadership.</div>
+        <div class="timeline-tags">
+          <span class="ttag">Agency</span>
+          <span class="ttag">Brand Strategy</span>
+          <span class="ttag">Sponsorship</span>
+          <span class="ttag">IPG</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Jan&nbsp;2025&nbsp;&ndash;&nbsp;May&nbsp;2026</div>
+      <div>
+        <div class="timeline-role">Athletic Ambassador Intern</div>
+        <div class="timeline-org">Texas Tech University Athletics &mdash; Lubbock, TX</div>
+        <div class="timeline-desc">Managed 10+ sponsor activations per game day at events with 20,000+ attendees. Engaged 500+ fans per event during live activations. Collected and organized fan engagement data across 8+ events to inform future activation strategy.</div>
+        <div class="timeline-tags">
+          <span class="ttag">D1 Athletics</span>
+          <span class="ttag">Live Activation</span>
+          <span class="ttag">Fan Engagement</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Jan&nbsp;&ndash;&nbsp;May&nbsp;2025</div>
+      <div>
+        <div class="timeline-role">Event &amp; Facility Management Intern</div>
+        <div class="timeline-org">United Supermarkets Arena &mdash; Lubbock, TX</div>
+        <div class="timeline-desc">Supported end-to-end operations across 15+ events for audiences of 5,000&ndash;15,000. Coordinated vendor logistics, facility setup, and cross-departmental execution across marketing, operations, security, and guest services.</div>
+        <div class="timeline-tags">
+          <span class="ttag">Event Ops</span>
+          <span class="ttag">Venue Management</span>
+          <span class="ttag">Vendor Coordination</span>
+        </div>
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-date">Apr&nbsp;2025</div>
+      <div>
+        <div class="timeline-role">Sponsor Activation Volunteer</div>
+        <div class="timeline-org">NCAA Men's Final Four &mdash; San Antonio, TX</div>
+        <div class="timeline-desc">Supported live activations for AT&amp;T, Coca-Cola, and Capital One across Fan Fest and the March Madness Music Festival. Managed real-time execution across multiple high-traffic touchpoints at one of the largest sporting events in America.</div>
+        <div class="timeline-tags">
+          <span class="ttag">Fortune 500</span>
+          <span class="ttag">Live Event</span>
+          <span class="ttag">NCAA</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio" id="work">
+  <div class="section-tag">Portfolio</div>
+  <h2 class="section-title">SELECTED<br>WORK</h2>
+  <div class="projects-grid">
+
+    <div class="project-card featured">
+      <div class="project-visual hyatt">
+        <span>HYATT</span>
+        <div class="project-label">Capstone Project &mdash; Texas Tech / Octagon</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Sponsorship Strategy &amp; Activation</div>
+        <div class="project-title">Hyatt: Gen Z Sports Partnership Recommendations</div>
+        <div class="project-desc">Developed a full sponsorship strategy deck for Hyatt, recommending two high-impact partnerships &mdash; Hyatt x PPA Tour (Pickleball) and Hyatt x USA Flag Football Summer Series &mdash; grounded in Gen Z consumer research, competitive whitespace analysis, activation frameworks, and ROI projections ranging from $750K to $5M. Presented to Octagon senior leadership as a real client brief.</div>
+        <div class="project-meta">Research &middot; Strategy &middot; Activation Planning &middot; ROI Modeling &middot; Executive Presentation</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-visual octagon">
+        <span>OCTAGON</span>
+        <div class="project-label">Internship &mdash; New York, NY</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Agency Campaign Development</div>
+        <div class="project-title">National Brand Campaign &mdash; Octagon</div>
+        <div class="project-desc">Coordinated cross-functional inputs across 4 internal teams to deliver a multi-phase national brand campaign from consumer research through to executive-level presentation at one of the world's leading sports marketing agencies.</div>
+        <div class="project-meta">Brand Strategy &middot; Consumer Insights &middot; Campaign Development</div>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-visual ncaa">
+        <span>NCAA</span>
+        <div class="project-label">Final Four &mdash; San Antonio, TX</div>
+      </div>
+      <div class="project-body">
+        <div class="project-type">Live Sponsor Activation</div>
+        <div class="project-title">NCAA Men's Final Four &mdash; AT&amp;T, Coca-Cola, Capital One</div>
+        <div class="project-desc">Supported real-time activation execution for three Fortune 500 sponsors across Fan Fest and the March Madness Music Festival, managing guest engagement across multiple high-traffic touchpoints at one of the biggest live sports events in the country.</div>
+        <div class="project-meta">Live Activation &middot; Fortune 500 &middot; Fan Engagement &middot; Event Logistics</div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="contact">
+  <div class="section-tag">Contact</div>
+  <h2 class="section-title">LET'S BUILD<br>SOMETHING</h2>
+  <div class="contact-grid">
+    <div>
+      <p class="contact-text">I am actively seeking full-time opportunities in sports marketing, brand partnerships, and experiential activation. If you are building something exciting and need someone who is organized, driven, and genuinely passionate about sport and culture, let's talk.</p>
+      <div class="contact-links">
+        <a href="mailto:dhyey288pandya@gmail.com" class="contact-link">
+          <div>
+            <span class="contact-link-label">Email</span>
+            dhyey288pandya@gmail.com
+          </div>
+        </a>
+        <a href="tel:+13464914537" class="contact-link">
+          <div>
+            <span class="contact-link-label">Phone</span>
+            +1 (346) 491-4537
+          </div>
+        </a>
+        <a href="https://www.linkedin.com/in/dhyey0828pandya" target="_blank" class="contact-link">
+          <div>
+            <span class="contact-link-label">LinkedIn</span>
+            linkedin.com/in/dhyey0828pandya
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="big-cta">
+      <div class="big-cta-title">READY TO<br><span>PLAY BALL?</span></div>
+      <p>Whether it's a full-time role, a contract project, or just a conversation about where sports marketing is heading, I am always open to connecting with the right people.</p>
+      <a href="mailto:dhyey288pandya@gmail.com" class="btn btn-primary">Send a Message &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <span>&copy; 2026 Dhyey Pandya</span>
+  <span>MS Sport Management &middot; Texas Tech University &middot; 4.0 GPA</span>
+</footer>
+
+</body>
+</html>
